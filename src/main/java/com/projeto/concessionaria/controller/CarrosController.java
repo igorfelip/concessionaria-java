@@ -28,19 +28,19 @@ public class CarrosController {
         return new ResponseEntity<>(carrosService.findById(id), HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping(path = "/admin")
     public ResponseEntity<Carros> save(@RequestBody @Valid CarrosPostRequestBody carro) {
         return new ResponseEntity<>(carrosService.save(carro), HttpStatus.CREATED);
     }
 
-    @PutMapping
+    @PutMapping(path = "/admin")
     public ResponseEntity<Void> update(@RequestBody @Valid CarrosPutRequestBody carro) {
         carrosService.update(carro);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> delete(Long id) {
+    @DeleteMapping("/admin/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         carrosService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

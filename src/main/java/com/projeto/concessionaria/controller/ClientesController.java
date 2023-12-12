@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("clientes")
-public class ClienteController {
+public class ClientesController {
     private final ClientesService clientesService;
 
     @GetMapping
@@ -28,19 +28,19 @@ public class ClienteController {
         return new ResponseEntity<>(clientesService.findById(id), HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping(path = "/admin")
     public ResponseEntity<Clientes> save(@RequestBody @Valid ClientesPostRequestBody clientesPostRequestBody) {
         return new ResponseEntity<>(clientesService.save(clientesPostRequestBody), HttpStatus.CREATED);
     }
 
-    @PutMapping
+    @PutMapping(path = "/admin")
     public ResponseEntity<Void> update(@RequestBody @Valid ClientesPutRequestBody clientesPutRequestBody) {
         clientesService.update(clientesPutRequestBody);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> delete(Long id) {
+    @DeleteMapping("/admin/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         clientesService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

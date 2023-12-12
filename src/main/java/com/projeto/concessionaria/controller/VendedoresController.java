@@ -29,19 +29,19 @@ public class VendedoresController {
         return new ResponseEntity<>(vendedoresService.findById(id), HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping(path = "/admin")
     public ResponseEntity<Vendedores> save(@RequestBody @Valid VendedoresPostRequestBody vendedoresPostRequestBody) {
         return new ResponseEntity<>(vendedoresService.save(vendedoresPostRequestBody), HttpStatus.CREATED);
     }
 
-    @PutMapping
+    @PutMapping(path = "/admin")
     public ResponseEntity<Void> update(@RequestBody @Valid VendedoresPutRequestBody vendedoresPutRequestBody) {
         vendedoresService.update(vendedoresPutRequestBody);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> delete(Long id) {
+    @DeleteMapping("/admin/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         vendedoresService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

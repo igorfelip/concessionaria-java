@@ -1,12 +1,15 @@
 package com.projeto.concessionaria.controller;
 
 import com.projeto.concessionaria.entity.Vendas;
+import com.projeto.concessionaria.requests.VendasPostRequestBody;
+import com.projeto.concessionaria.requests.VendasPutRequestBody;
 import com.projeto.concessionaria.service.VendasService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -26,19 +29,19 @@ public class VendasController {
         return new ResponseEntity<>(vendasService.findById(id), HttpStatus.OK);
     }
 
-    @PostMapping(path = "/{parc}")
-    public ResponseEntity<Vendas> save(@RequestBody Vendas venda, @PathVariable Integer parc) {
+    @PostMapping(path = "/admin/{parc}")
+    public ResponseEntity<Vendas> save(@RequestBody @Valid VendasPostRequestBody venda, @PathVariable Integer parc) {
         return new ResponseEntity<>(vendasService.save(venda, parc), HttpStatus.CREATED);
     }
 
-    @PutMapping
-    public ResponseEntity<Void> update(@RequestBody Vendas venda) {
+    @PutMapping(path = "/admin")
+    public ResponseEntity<Void> update(@RequestBody @Valid VendasPutRequestBody venda) {
         vendasService.update(venda);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> delete(Long id) {
+    @DeleteMapping("/admin/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         vendasService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
