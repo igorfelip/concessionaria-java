@@ -3,7 +3,7 @@ package com.projeto.concessionaria.service;
 import com.projeto.concessionaria.entity.Vendedores;
 import com.projeto.concessionaria.exception.BadRequestException;
 import com.projeto.concessionaria.mapper.VendedoresMapper;
-import com.projeto.concessionaria.repository.VendedorRepository;
+import com.projeto.concessionaria.repository.VendedoresRepository;
 import com.projeto.concessionaria.requests.VendedoresPostRequestBody;
 import com.projeto.concessionaria.requests.VendedoresPutRequestBody;
 import lombok.RequiredArgsConstructor;
@@ -18,31 +18,31 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class VendedoresService {
-    private final VendedorRepository vendedorRepository;
+    private final VendedoresRepository vendedoresRepository;
 
     public List<Vendedores> findAll() {
-        return vendedorRepository.findAll();
+        return vendedoresRepository.findAll();
     }
 
     public Vendedores findById(Long id) {
-        return vendedorRepository.findById(id).orElseThrow(() ->
+        return vendedoresRepository.findById(id).orElseThrow(() ->
                 (new BadRequestException("Vendedor não encontrado")));
     }
 
     public Vendedores save(VendedoresPostRequestBody vendedoresPostRequestBody) {
-        return vendedorRepository.save(VendedoresMapper.INSTANCE.toVendedores(vendedoresPostRequestBody));
+        return vendedoresRepository.save(VendedoresMapper.INSTANCE.toVendedores(vendedoresPostRequestBody));
     }
 
     public void update(VendedoresPutRequestBody vendedoresPutRequestBody) {
         Vendedores byId = findById(vendedoresPutRequestBody.getId());
         Vendedores vendedores = VendedoresMapper.INSTANCE.toVendedores(vendedoresPutRequestBody);
         vendedores.setId(byId.getId());
-        vendedorRepository.save(vendedores);
+        vendedoresRepository.save(vendedores);
     }
 
     public void delete(Long id) {
         Vendedores byId = findById(id);
-        vendedorRepository.delete(byId);
+        vendedoresRepository.delete(byId);
 
     }
 
@@ -53,6 +53,6 @@ public class VendedoresService {
             BigDecimal subtract = vendedores1.getSalario().subtract(vendedores1.getSalario());
             vendedores1.setSalario(subtract.add(BigDecimal.valueOf(1300)));
         });
-        vendedores.forEach(vendedorRepository::save);
+        vendedores.forEach(vendedoresRepository::save);
     }
 }

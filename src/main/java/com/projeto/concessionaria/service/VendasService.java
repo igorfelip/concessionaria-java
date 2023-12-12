@@ -5,7 +5,10 @@ import com.projeto.concessionaria.entity.Clientes;
 import com.projeto.concessionaria.entity.Vendas;
 import com.projeto.concessionaria.entity.Vendedores;
 import com.projeto.concessionaria.exception.BadRequestException;
+import com.projeto.concessionaria.mapper.VendaMapper;
 import com.projeto.concessionaria.repository.VendasRepository;
+import com.projeto.concessionaria.requests.VendasPostRequestBody;
+import com.projeto.concessionaria.requests.VendasPutRequestBody;
 import com.projeto.concessionaria.utils.Utils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -34,7 +37,7 @@ public class VendasService {
     }
 
     @Transactional
-    public Vendas save(Vendas venda, Integer parc) {
+    public Vendas save(VendasPostRequestBody venda, Integer parc) {
         Carros carro = carrosService.findById(venda.getCarro().getId());
         Vendedores vendedor = vendedoresService.findById(venda.getVendedor().getId());
         Clientes cliente = clientesService.findById(venda.getCliente().getId());
@@ -48,13 +51,14 @@ public class VendasService {
         cliente.setCarrosComprados(comprados);
         cliente.setSaldo(cliente.getSaldo().subtract(parcelamento));
         vendedor.setSalario(Utils.calculaComissao(vendedor, carro));
-        return vendasRepository.save(venda);
+        return vendasRepository.save(VendaMapper.INSTANCE.toVenda(venda));
     }
 
-    public void update(Vendas venda) {
-        Vendas vendatrocada = findById(venda.getId());
-        venda.setId(vendatrocada.getId());
-        vendasRepository.save(venda);
+    public void update(VendasPutRequestBody vendasPutRequestBody) {
+        Vendas vendatrocada = findById(vendasPutRequestBody.getId());
+        Vendas vendasAtualizada = VendaMapper.INSTANCE.toVendas(vendasPutRequestBody);
+        vendasAtualizada.setId(vendatrocada.getId());
+        vendasRepository.save(vendasAtualizada);
     }
 
 
