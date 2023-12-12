@@ -1,18 +1,27 @@
 package com.projeto.concessionaria.requests;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Range;
 
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ClientesPutRequestBody {
-    @NotBlank(message = "Insira um Id")
+    @NotNull(message = "Insira um Id")
     private Long id;
     @NotBlank(message = "Insira um nome")
     private String nome;
-    @Range(max = 11, min = 9, message = "Insira um documento válido")
+    @Range(min = 0, max = 99999999999L, message = "Insira um documento válido")
     private Long documento;
+    @DecimalMin(value = "0", message = "Insira um valor")
     private BigDecimal saldo;
 }
