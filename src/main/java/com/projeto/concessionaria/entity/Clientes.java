@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Objects;
 
 @Data
 @Entity
@@ -25,5 +26,16 @@ public class Clientes {
     @JoinColumn(name = "venda_id")
     private List<Carros> carrosComprados;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Clientes)) return false;
+        Clientes clientes = (Clientes) o;
+        return Objects.equals(documento, clientes.documento);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(documento);
+    }
 }
