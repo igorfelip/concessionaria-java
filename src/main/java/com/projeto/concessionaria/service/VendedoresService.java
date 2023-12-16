@@ -52,7 +52,7 @@ public class VendedoresService {
         vendedores.forEach(vendedores1 -> {
             BigDecimal subtract = vendedores1.getSalario().subtract(vendedores1.getSalario());
             vendedores1.setSalario(subtract.add(BigDecimal.valueOf(1300)));
+            vendedoresRepository.save(vendedores1);
         });
-        vendedores.forEach(vendedoresRepository::save);
     }
 }
