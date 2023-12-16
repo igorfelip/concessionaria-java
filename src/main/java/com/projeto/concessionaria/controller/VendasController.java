@@ -7,6 +7,7 @@ import com.projeto.concessionaria.service.VendasService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -29,6 +30,7 @@ public class VendasController {
         return new ResponseEntity<>(vendasService.findById(id), HttpStatus.OK);
     }
 
+    @Transactional
     @PostMapping(path = "/admin/{parc}")
     public ResponseEntity<Vendas> save(@RequestBody @Valid VendasPostRequestBody venda, @PathVariable Integer parc) {
         return new ResponseEntity<>(vendasService.save(venda, parc), HttpStatus.CREATED);
