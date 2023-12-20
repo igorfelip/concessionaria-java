@@ -81,7 +81,7 @@ class ClientesControllerTest {
 
     @Test
     void delete_DeletaCliente() {
-        Assertions.assertThatCode(() -> clientesController.delete(1l)).doesNotThrowAnyException();
+        Assertions.assertThatCode(() -> clientesController.delete(1L)).doesNotThrowAnyException();
 
         ResponseEntity<Void> entity = clientesController.delete(1L);
 

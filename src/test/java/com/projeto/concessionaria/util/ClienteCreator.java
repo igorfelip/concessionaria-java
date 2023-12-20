@@ -1,17 +1,15 @@
 package com.projeto.concessionaria.util;
 
-import com.projeto.concessionaria.entity.Carros;
 import com.projeto.concessionaria.entity.Clientes;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 public class ClienteCreator {
     public static Clientes criaClienteParaSerSalvo() {
         return Clientes.builder()
                 .nome("Bianca")
                 .saldo(BigDecimal.valueOf(40000))
-                .documento(12414135L)
+                .CPF("104.030.350-15")
                 .build();
     }
 
@@ -20,7 +18,7 @@ public class ClienteCreator {
                 .id(1L)
                 .nome("Bianca")
                 .saldo(BigDecimal.valueOf(40000))
-                .documento(12414135L)
+                .CPF("104.030.350-15")
                 .build();
     }
 
@@ -29,7 +27,7 @@ public class ClienteCreator {
                 .id(1L)
                 .nome("Patricia")
                 .saldo(BigDecimal.valueOf(80000))
-                .documento(5737542765L)
+                .CPF("104.030.350-15")
                 .build();
     }
 }

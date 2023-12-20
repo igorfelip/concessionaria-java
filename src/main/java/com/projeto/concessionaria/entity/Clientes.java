@@ -20,7 +20,7 @@ public class Clientes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    private Long documento;
+    private String CPF;
     private BigDecimal saldo;
     @OneToMany
     @JoinColumn(name = "venda_id")
@@ -31,11 +31,11 @@ public class Clientes {
         if (this == o) return true;
         if (!(o instanceof Clientes)) return false;
         Clientes clientes = (Clientes) o;
-        return Objects.equals(documento, clientes.documento);
+        return Objects.equals(CPF, clientes.CPF);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(documento);
+        return Objects.hash(CPF);
     }
 }

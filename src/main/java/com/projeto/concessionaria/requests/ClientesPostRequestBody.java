@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.Range;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
@@ -17,8 +17,8 @@ import java.math.BigDecimal;
 public class ClientesPostRequestBody {
     @NotBlank(message = "Insira um nome")
     private String nome;
-    @Range(min = 0, max = 99999999999L, message = "Insira um documento válido")
-    private Long documento;
+    @CPF
+    private String CPF;
     @DecimalMin(value = "0", message = "Insira um valor")
     private BigDecimal saldo;
 }

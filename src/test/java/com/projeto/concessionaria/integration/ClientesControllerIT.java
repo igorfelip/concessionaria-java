@@ -25,10 +25,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.List;
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureTestDatabase
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
- class ClientesControllerIT {
+class ClientesControllerIT {
     @Autowired
     ClientesRepository clientesRepository;
     @Autowired
@@ -95,6 +96,7 @@ import java.util.List;
         Assertions.assertThat(body.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
 
     }
+
     @TestConfiguration
     @Lazy
     static class config {
@@ -105,7 +107,8 @@ import java.util.List;
                     .basicAuthentication("Igor", "testando");
             return new TestRestTemplate(igor);
         }
-}}
+    }
+}
 
 
 
