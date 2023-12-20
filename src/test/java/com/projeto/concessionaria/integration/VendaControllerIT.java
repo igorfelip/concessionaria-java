@@ -83,7 +83,7 @@ class VendaControllerIT {
         clientesRepository.save(VendaCreator.criaVendaParaSerSalva().getCliente());
         VendasPostRequestBody vendasPostRequestBody = VendaPostRequestBodyCreator.criaVendaPostRequestBody();
         ResponseEntity<Vendas> body = testRestTemplate.postForEntity("/vendas//admin/{par}", vendasPostRequestBody
-                ,Vendas.class, 2);
+                , Vendas.class, 2);
 
         Assertions.assertThat(body).isNotNull();
         Assertions.assertThat(body.getStatusCode()).isEqualTo(HttpStatus.CREATED);
@@ -121,6 +121,7 @@ class VendaControllerIT {
         Assertions.assertThat(body.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
 
     }
+
     @TestConfiguration
     @Lazy
     static class config {
@@ -131,7 +132,8 @@ class VendaControllerIT {
                     .basicAuthentication("Igor", "testando");
             return new TestRestTemplate(igor);
         }
-    }}
+    }
+}
 
 
 

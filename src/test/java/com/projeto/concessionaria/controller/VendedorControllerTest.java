@@ -20,6 +20,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
+
 @ExtendWith(SpringExtension.class)
 class VendedorControllerTest {
 
@@ -80,7 +81,7 @@ class VendedorControllerTest {
 
     @Test
     void delete_DeletaVendedor() {
-        Assertions.assertThatCode(() -> vendedorController.delete(1l)).doesNotThrowAnyException();
+        Assertions.assertThatCode(() -> vendedorController.delete(1L)).doesNotThrowAnyException();
 
         ResponseEntity<Void> entity = vendedorController.delete(1L);
 

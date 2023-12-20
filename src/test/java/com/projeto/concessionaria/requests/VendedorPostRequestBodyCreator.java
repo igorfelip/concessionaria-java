@@ -1,6 +1,5 @@
 package com.projeto.concessionaria.requests;
 
-import com.projeto.concessionaria.util.CarroCreator;
 import com.projeto.concessionaria.util.VendedorCreator;
 
 public class VendedorPostRequestBodyCreator {

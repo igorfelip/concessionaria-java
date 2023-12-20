@@ -3,7 +3,6 @@ package com.projeto.concessionaria.controller;
 import com.projeto.concessionaria.entity.Vendas;
 import com.projeto.concessionaria.requests.VendaPostRequestBodyCreator;
 import com.projeto.concessionaria.requests.VendaPutRequestBodyCreator;
-import com.projeto.concessionaria.requests.VendasPostRequestBody;
 import com.projeto.concessionaria.requests.VendasPutRequestBody;
 import com.projeto.concessionaria.service.VendasService;
 import com.projeto.concessionaria.util.VendaCreator;

@@ -97,6 +97,7 @@ class VendedoresControllerIT {
         Assertions.assertThat(body.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
 
     }
+
     @TestConfiguration
     @Lazy
     static class config {
@@ -107,7 +108,8 @@ class VendedoresControllerIT {
                     .basicAuthentication("Igor", "testando");
             return new TestRestTemplate(igor);
         }
-    }}
+    }
+}
 
 
 

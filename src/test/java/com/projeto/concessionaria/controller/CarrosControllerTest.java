@@ -80,7 +80,7 @@ class CarrosControllerTest {
 
     @Test
     void delete_DeletaCarro() {
-        Assertions.assertThatCode(() -> carrosController.delete(1l)).doesNotThrowAnyException();
+        Assertions.assertThatCode(() -> carrosController.delete(1L)).doesNotThrowAnyException();
 
         ResponseEntity<Void> entity = carrosController.delete(1L);
 

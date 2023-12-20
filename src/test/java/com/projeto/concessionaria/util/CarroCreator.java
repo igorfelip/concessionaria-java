@@ -12,7 +12,9 @@ public class CarroCreator {
                 .ano(2012)
                 .modelo("Ka")
                 .build();
-    }  public static Carros criaCarroValido() {
+    }
+
+    public static Carros criaCarroValido() {
         return Carros.builder()
                 .id(1L)
                 .marca("Ford")
@@ -20,7 +22,9 @@ public class CarroCreator {
                 .ano(2012)
                 .modelo("Ka")
                 .build();
-    }  public static Carros criaCarroAtualizado() {
+    }
+
+    public static Carros criaCarroAtualizado() {
         return Carros.builder()
                 .id(1L)
                 .marca("Peugeot")
